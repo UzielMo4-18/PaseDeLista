@@ -30,9 +30,16 @@
         <div>
             <h1>¡Bienvenido!</h1>
             <p>A continuación verifique su token</p>
-            <h4>{{ prueba }}</h4>
         </div>
 
+        <div>
+            <h4>Asistencias</h4>
+            {% for asi in asistencias %}
+                <ul>
+                    <li>{{ asi }}</li>
+                </ul>
+            {% endfor %}
+        </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

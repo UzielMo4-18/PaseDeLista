@@ -30,7 +30,21 @@
         <div>
             <h1>Materias y clases</h1>
             <p>Desde aquí puede ver y hacer ediciones a las materias y clases</p>
-            <h4>{{ valor }}</h4>
+        </div>
+
+        <div>
+            <h4>Materias</h4>
+            {% for mats in materias %}
+                <ul>
+                    <li>{{ mats }}</li>
+                </ul>
+            {% endfor %}
+            <h4>Clases</h4>
+            {% for clas in clases %}
+                <ul>
+                    <li>{{ clas }}</li>
+                </ul>
+            {% endfor %}
         </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 

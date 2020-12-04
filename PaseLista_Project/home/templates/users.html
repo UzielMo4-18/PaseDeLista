@@ -30,7 +30,21 @@
         <div>
             <h1>Alumnos y profesores</h1>
             <p>Desde aquí puede ver y hacer ediciones a cualquier usuario</p>
-            <h4>{{ palabra }}</h4>
+        </div>
+
+        <div>
+            <h4>Alumnos</h4>
+            {% for als in alumnos %}
+                <ul>
+                    <li>{{ als }}</li>
+                </ul>
+            {% endfor %}
+            <h4>Profesores</h4>
+            {% for prs in profesores %}
+                <ul>
+                    <li>{{ prs }}</li>
+                </ul>
+            {% endfor %}
         </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
