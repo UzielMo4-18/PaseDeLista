@@ -40,6 +40,7 @@
                     <th>Nombre</th>
                     <th>Periodo</th>
                     <th>Año</th>
+                    <th>Clases</th>
                 </tr>
                 {% for mats in materias %}
                 <tr>
@@ -47,6 +48,13 @@
                     <td>{{ mats.nombre_materia }}</td>
                     <td>{{ mats.periodo }}</td>
                     <td>{{ mats.year }}</td>
+                    <td>
+                        {% for clas in clases %}
+                        <ul>
+                            <li>{{ clas.fecha }}</li>
+                        </ul>
+                        {% endfor %}
+                    </td>
                 </tr>
                 {% endfor %}
             </table>

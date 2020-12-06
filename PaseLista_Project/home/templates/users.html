@@ -51,11 +51,19 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre completo</th>
+                    <th>Materias impartidas</th>
                 </tr>
                 {% for prs in profesores %}
                 <tr>
                     <td>{{ prs.id }}</td>
                     <td>{{ prs.nombre_profesor }}</td>
+                    <td>
+                        {% for mtpr in materias_profesor %}
+                        <ul>
+                            <li>{{ mtpr.nombre_materia }}</li>
+                        </ul>
+                        {% endfor %}
+                    </td>
                 </tr>
                 {% endfor %}
             </table>
