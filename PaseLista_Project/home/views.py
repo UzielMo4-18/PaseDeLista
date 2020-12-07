@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponseRedirect,get_object_or_404
 from django.views import View
 from .models import Asistencia
 from .forms import RegistroAsistencia
@@ -43,3 +43,12 @@ class AsistenciaUpdate(View):
         else:
             context={'form':form}
             return render(request,'asistencia.html',context)
+
+class AsistenciaDelete(View):
+    def get(self,request,id):
+        asistencia_=get_object_or_404(Asistencia,id=id)
+        context={}
+        if request.method=="POST":
+            asistencia_.delete()
+            return HttpResponseRedirect("/")
+        return render(request,'delete.html',context)

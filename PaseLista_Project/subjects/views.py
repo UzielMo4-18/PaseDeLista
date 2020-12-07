@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponseRedirect,get_object_or_404
 from django.views import View
 from home.models import Materia,Clase
 from .forms import RegistroMateria,RegistroClase
@@ -45,6 +45,15 @@ class MateriaUpdate(View):
             context={'form':form}
             return render(request,'materia.html',context)
 
+class MateriaDelete(View):
+    def get(self,request,id):
+        materia_=get_object_or_404(Materia,id=id)
+        context={}
+        if request.method=="POST":
+            materia_.delete()
+            return HttpResponseRedirect("/")
+        return render(request,'delete.html',context)
+
 class ClaseAdd(View):
     def get(self,request):
         form=RegistroClase()
@@ -77,3 +86,12 @@ class ClaseUpdate(View):
         else:
             context={'form':form}
             return render(request,'clase.html',context)
+
+class ClaseDelete(View):
+    def get(self,request,id):
+        clase_=get_object_or_404(Clase,id=id)
+        context={}
+        if request.method=="POST":
+            clase_.delete()
+            return HttpResponseRedirect("/")
+        return render(request,'delete.html',context)

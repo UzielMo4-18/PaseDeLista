@@ -28,11 +28,12 @@
             </div>
         </nav>
         <div class="container">
-            <h4>Registra a un nuevo profesor</h4>
+            <h4>Eliminar elemento</h4>
+            <p>¿Está seguro que desea eliminar este elemento?</p>
             <form method="POST">
                 {% csrf_token %}
-                {{ form.as_ul }}
-                <button type="submit" class="btn btn-dark">Registrar</button>
+                <button class="btn btn-dark" type="submit">Sí</button>
+                <a class="btn btn-dark" href="{% url 'homeScr' %}">No</a>
             </form>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 

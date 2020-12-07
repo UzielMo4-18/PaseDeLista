@@ -43,11 +43,13 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre completo</th>
+                    <th>Otras acciones</th>
                 </tr>
                 {% for als in alumnos %}
                 <tr>
                     <td>{{ als.id }}</td>
                     <td><a href="{% url 'Alumno_update' als.id %}">{{ als.nombre_alumno }}</a></td>
+                    <td><a class="btn btn-danger" href="{% url 'Alumno_delete' als.id%}">Eliminar</a></td>
                 </tr>
                 {% endfor %}
             </table>
@@ -62,6 +64,7 @@
                     <th>ID</th>
                     <th>Nombre completo</th>
                     <th>Materias impartidas</th>
+                    <th>Otras acciones</th>
                 </tr>
                 {% for prs in profesores %}
                 <tr>
@@ -74,6 +77,7 @@
                         </ul>
                         {% endfor %}
                     </td>
+                    <td><a class="btn btn-danger" href="{% url 'Profesor_delete' prs.id%}">Eliminar</a></td>
                 </tr>
                 {% endfor %}
             </table>

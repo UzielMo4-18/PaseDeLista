@@ -14,7 +14,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'UsersScr' %}">Usuarios<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
@@ -45,6 +45,7 @@
                     <th>Alumno</th>
                     <th>Fecha y hora de registro</th>
                     <th>Clase</th>
+                    <th>Otras acciones</th>
                 </tr>
                 {% for asi in asistencias %}
                 <tr>
@@ -52,6 +53,7 @@
                     <td><a href="{% url 'Asi_update' asi.id %}">{{ asi.id_alumno }}</a></td>
                     <td>{{ asi.fecha_hora }}</td>
                     <td>{{ asi.id_clases }}</td>
+                    <td><a class="btn btn-danger" href="{% url 'Asi_delete' asi.id%}">Eliminar</a></td>
                 </tr>
                 {% endfor %}
             </table>

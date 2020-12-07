@@ -49,6 +49,15 @@ class AlumnoUpdate(View):
             context={'form':form}
             return render(request,'alumno.html',context)
 
+class AlumnoDelete(View):
+    def get(self,request,id):
+        alumno=get_object_or_404(Clase,id=id)
+        context={}
+        if request.method=="POST":
+            alumno.delete()
+            return HttpResponseRedirect("/")
+        return render(request,'delete.html',context)
+
 class ProfesorAdd(View):
     def get(self,request):
         form=RegistroProfesor()
@@ -81,3 +90,12 @@ class ProfesorUpdate(View):
         else:
             context={'form':form}
             return render(request,'profesor.html',context)
+
+class ProfesorDelete(View):
+    def get(self,request,id):
+        profesor=get_object_or_404(Clase,id=id)
+        context={}
+        if request.method=="POST":
+            profesor.delete()
+            return HttpResponseRedirect("/")
+        return render(request,'delete.html',context)
