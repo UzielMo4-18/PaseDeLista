@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views import View
 from home.models import Alumno,Profesor,Materia
-from .forms import RegistroAlumno
+from .forms import RegistroAlumno,RegistroProfesor
 
 # Create your views here.
 
@@ -31,3 +31,53 @@ class AlumnoAdd(View):
             form=RegistroAlumno()
             context={'form':form}
             return render(request,'alumno.html',context)
+
+class AlumnoUpdate(View):
+    def get(self,request,id):
+        alumno=Alumno.objects.get(id=id)
+        form=RegistroAlumno(instance=alumno)
+        context={'form':form}
+        return render(request,'alumno.html',context)
+    
+    def post(self,request,id):
+        alumno=Alumno.objects.get(id=id)
+        form=RegistroAlumno(request.POST,instance=alumno)
+        if form.is_valid():
+            form.save()
+            return redirect('UsersScr')
+        else:
+            context={'form':form}
+            return render(request,'alumno.html',context)
+
+class ProfesorAdd(View):
+    def get(self,request):
+        form=RegistroProfesor()
+        context={'form':form}
+        return render(request,'profesor.html',context)
+    
+    def post(self,request):
+        form=RegistroProfesor(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('UsersScr')
+        else:
+            form=RegistroProfesor()
+            context={'form':form}
+            return render(request,'profesor.html',context)
+
+class ProfesorUpdate(View):
+    def get(self,request,id):
+        profesor_=Profesor.objects.get(id=id)
+        form=RegistroProfesor(instance=profesor_)
+        context={'form':form}
+        return render(request,'profesor.html',context)
+    
+    def post(self,request,id):
+        profesor_=Profesor.objects.get(id=id)
+        form=RegistroProfesor(request.POST,instance=profesor_)
+        if form.is_valid():
+            form.save()
+            return redirect('UsersScr')
+        else:
+            context={'form':form}
+            return render(request,'profesor.html',context)

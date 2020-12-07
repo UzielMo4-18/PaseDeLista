@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Usuarios</title>
+        <title>Inicio</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
@@ -15,7 +15,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Usuarios<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'UsersScr' %}">Usuarios<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'SubjectsScr' %}">Materias</a>
@@ -27,58 +27,14 @@
                 </form>
             </div>
         </nav>
-        <div>
-            <h1>Alumnos y profesores</h1>
-            <p>Desde aquí puede ver y hacer ediciones a cualquier usuario</p>
+        <div class="container">
+            <h4>Registra a un nuevo profesor</h4>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_ul }}
+                <button type="submit" class="btn btn-dark">Registrar</button>
+            </form>
         </div>
-
-        <div>
-            <h4>Alumnos</h4>
-            <p>Puede agregar nuevos alumnos</p>
-            <div>
-                <a class="btn btn-dark" href="{% url 'Alumno_add' %}">Registrar alumno</a>
-            </div>
-            <br>
-            <table class="table table-bordered">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre completo</th>
-                </tr>
-                {% for als in alumnos %}
-                <tr>
-                    <td>{{ als.id }}</td>
-                    <td><a href="{% url 'Alumno_update' als.id %}">{{ als.nombre_alumno }}</a></td>
-                </tr>
-                {% endfor %}
-            </table>
-            <h4>Profesores</h4>
-            <p>Puede agregar nuevos profesores</p>
-            <div>
-                <a class="btn btn-dark" href="{% url 'Profesor_add' %}">Registrar profesor</a>
-            </div>
-            <br>
-            <table class="table table-bordered">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre completo</th>
-                    <th>Materias impartidas</th>
-                </tr>
-                {% for prs in profesores %}
-                <tr>
-                    <td>{{ prs.id }}</td>
-                    <td><a href="{% url 'Profesor_update' prs.id %}">{{ prs.nombre_profesor }}</a></td>
-                    <td>
-                        {% for mtpr in materias_profesor %}
-                        <ul>
-                            <li>{{ mtpr.nombre_materia }}</li>
-                        </ul>
-                        {% endfor %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
