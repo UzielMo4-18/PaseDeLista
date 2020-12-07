@@ -27,34 +27,13 @@
                 </form>
             </div>
         </nav>
-        <div>
-            <h1>¡Bienvenido!</h1>
-            <p>A continuación se presentan las asistencias registradas</p>
-            <p>Puede registrar una nueva asistencia abajo</p>
-        </div>
-
-        <div>
-            <div>
-                <a class="btn btn-dark" href="{% url 'Asi_add' %}">Registrar asistencia</a>
-            </div>
-            <br>
-            <h4>Asistencias</h4>
-            <table class="table table-bordered">
-                <tr>
-                    <th>ID</th>
-                    <th>Alumno</th>
-                    <th>Fecha y hora de registro</th>
-                    <th>Clase</th>
-                </tr>
-                {% for asi in asistencias %}
-                <tr>
-                    <td>{{ asi.id }}</td>
-                    <td><a href="{% url 'Asi_update' asi.id %}">{{ asi.id_alumno }}</a></td>
-                    <td>{{ asi.fecha_hora }}</td>
-                    <td>{{ asi.id_clases }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+        <div class="container">
+            <h4>Registra la asistencia</h4>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_ul }}
+                <button type="submit" class="btn btn-dark">Registrar</button>
+            </form>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
